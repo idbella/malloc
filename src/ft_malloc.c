@@ -6,7 +6,7 @@
 /*   By: sid-bell <sid-bell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 09:27:39 by sid-bell          #+#    #+#             */
-/*   Updated: 2019/11/08 19:34:01 by sid-bell         ###   ########.fr       */
+/*   Updated: 2019/11/08 19:51:01 by sid-bell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	ft_preallocat(void)
 	pg_size = g_params.pg_size;
 	g_params.small = ft_newzone(SMALL, pg_size * SMALLX);
 	g_params.medium = ft_newzone(MEDUIM, pg_size * MEDUIMX);
-	g_params.init = 1;
 }
 
 void	*ft_alloc(size_t size)

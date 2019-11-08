@@ -6,7 +6,7 @@
 /*   By: sid-bell <sid-bell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 09:24:45 by sid-bell          #+#    #+#             */
-/*   Updated: 2019/11/08 19:33:49 by sid-bell         ###   ########.fr       */
+/*   Updated: 2019/11/08 19:50:52 by sid-bell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ typedef struct	s_params
 	t_zone		*small;
 	t_zone		*medium;
 	t_fragment	*larg;
-	char		init;
 	int			pg_size;
 	size_t		count;
 	size_t		calls;
@@ -58,5 +57,8 @@ void			*ft_small(size_t size);
 void			*ft_meduim(size_t size);
 void			*ft_large(size_t size);
 t_zone			*ft_getzone(void *ptr, t_fragment **fragment, char *type);
+char			ft_emptyzone(t_zone *zone);
+void			ft_delete_small_zone(t_zone *zone);
+void			ft_delete_medium_zone(t_zone *zone);
 t_params		g_params;
 #endif

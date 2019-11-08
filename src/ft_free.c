@@ -6,7 +6,7 @@
 /*   By: sid-bell <sid-bell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 17:59:57 by sid-bell          #+#    #+#             */
-/*   Updated: 2019/11/08 19:31:02 by sid-bell         ###   ########.fr       */
+/*   Updated: 2019/11/08 19:48:40 by sid-bell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,98 +35,29 @@ void	ft_delete_large_fregment(t_fragment *fragment)
 	}
 }
 
-char	ft_emptyzone(t_zone *zone)
-{
-	t_fragment	*fragment;
-	int			i;
-
-	i = 0;
-	fragment = zone->fargments;
-	while (i < MAXALLOC)
-	{
-		if (fragment[i].size)
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-void	ft_delete_zone(t_zone *zone, t_zone *lst)
-{
-	t_zone		*prev;
-
-	prev = NULL;
-	while (lst)
-	{
-		if (lst == zone)
-		{
-			if (prev)
-				prev->next = lst->next;
-			munmap(lst, sizeof(t_zone));
-			return ;
-		}
-		prev = lst;
-		lst = lst->next;
-	}
-}
-
-void	ft_delete_small_zone(t_zone *zone)
-{
-	int			i;
-
-	i = 0;
-	while (i < MAXALLOC)
-	{
-		munmap(zone->ptr, SMALLX * g_params.pg_size);
-		i++;
-	}
-	ft_delete_zone(zone, g_params.small);
-}
-
-void	ft_delete_medium_zone(t_zone *zone)
-{
-	int			i;
-
-	i = 0;
-	while (i < MAXALLOC)
-	{
-		munmap(zone->ptr, MEDUIMX * g_params.pg_size);
-		i++;
-	}
-	ft_delete_zone(zone, g_params.medium);
-}
-
 void	ft_free(void *ptr)
 {
 	t_fragment	*fragment;
 	t_zone		*zone;
 	char		type;
 
-	g_params.pg_size = getpagesize();
-	if (!g_params.init || !ptr)
+	if (!ptr || !(g_params.pg_size = getpagesize()))
 		return ;
 	zone = ft_getzone(ptr, &fragment, &type);
 	if (fragment)
 	{
-		if (!zone && munmap(fragment->ptr, fragment->size))
-		{
-			printf("cant free %p\n", fragment->ptr);
-			abort();
-		}
+		if (!zone)
+			munmap(fragment->ptr, fragment->size);
 		fragment->size = 0;
 		if (!zone)
 			ft_delete_large_fregment(fragment);
-		else
+		else if (ft_emptyzone(zone))
 		{
 			if (type == SMALL && zone != g_params.small)
-				if (ft_emptyzone(zone))
-					ft_delete_small_zone(zone);
+				ft_delete_small_zone(zone);
 			if (type == MEDUIM && zone != g_params.medium)
-				if (ft_emptyzone(zone))
-					ft_delete_medium_zone(zone);
+				ft_delete_medium_zone(zone);
 		}
 		return ;
 	}
-	printf("adress %p was not allocated\n", ptr);
-	abort();
 }
