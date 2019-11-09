@@ -6,7 +6,7 @@
 /*   By: sid-bell <sid-bell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 09:24:45 by sid-bell          #+#    #+#             */
-/*   Updated: 2019/11/08 19:50:52 by sid-bell         ###   ########.fr       */
+/*   Updated: 2019/11/09 19:00:03 by sid-bell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,8 @@ t_zone			*ft_getzone(void *ptr, t_fragment **fragment, char *type);
 char			ft_emptyzone(t_zone *zone);
 void			ft_delete_small_zone(t_zone *zone);
 void			ft_delete_medium_zone(t_zone *zone);
+char			ft_type(size_t size);
+void			*ft_realoc(void *ptr, size_t size);
+void			show_alloc_mem(void);
 t_params		g_params;
 #endif

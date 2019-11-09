@@ -6,7 +6,7 @@
 /*   By: sid-bell <sid-bell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 09:27:39 by sid-bell          #+#    #+#             */
-/*   Updated: 2019/11/08 19:51:01 by sid-bell         ###   ########.fr       */
+/*   Updated: 2019/11/09 18:33:55 by sid-bell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,12 @@ void	ft_preallocat(void)
 
 void	*ft_alloc(size_t size)
 {
-	size_t		small_n;
-	size_t		meduim_n;
-	size_t		pg_size;
+	char	type;
 
-	pg_size = g_params.pg_size;
-	small_n = (SMALLX * pg_size) / MAXALLOC;
-	meduim_n = (MEDUIMX * pg_size) / MAXALLOC;
-	if (size <= small_n)
+	type = ft_type(size);
+	if (type == SMALL)
 		return (ft_small(size));
-	if (size <= meduim_n)
+	if (type == MEDUIM)
 		return (ft_meduim(size));
 	else
 		return (ft_large(size));
