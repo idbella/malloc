@@ -6,7 +6,7 @@
 #    By: sid-bell <sid-bell@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/07 17:46:57 by sid-bell          #+#    #+#              #
-#    Updated: 2019/11/09 18:59:47 by sid-bell         ###   ########.fr        #
+#    Updated: 2019/11/09 22:36:39 by sid-bell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ CFLAGS= -g -I$(INC) -Wall -Wextra -Werror
 all:$(NAME)
 
 $(NAME):$(OBJ)
+	#ar -rc libmalloc.a $(OBJ)
 	gcc -g $(OBJ) -o malloc
 clean:
 	rm -rf $(OBJ)

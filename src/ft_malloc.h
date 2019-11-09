@@ -6,7 +6,7 @@
 /*   By: sid-bell <sid-bell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 09:24:45 by sid-bell          #+#    #+#             */
-/*   Updated: 2019/11/09 19:00:03 by sid-bell         ###   ########.fr       */
+/*   Updated: 2019/11/09 22:38:11 by sid-bell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct	s_zone
 	struct s_zone	*next;
 }				t_zone;
 
-typedef struct	s_params
+typedef struct	s_mallocparams
 {
 	t_zone		*small;
 	t_zone		*medium;
@@ -45,7 +45,7 @@ typedef struct	s_params
 	int			pg_size;
 	size_t		count;
 	size_t		calls;
-}				t_params;
+}				t_mallocparams;
 
 void			*ft_malloc(size_t size);
 void			*ft_realoc(void *ptr, size_t size);
@@ -63,5 +63,5 @@ void			ft_delete_medium_zone(t_zone *zone);
 char			ft_type(size_t size);
 void			*ft_realoc(void *ptr, size_t size);
 void			show_alloc_mem(void);
-t_params		g_params;
+t_mallocparams	g_params;
 #endif
