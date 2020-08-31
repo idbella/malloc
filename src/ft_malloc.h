@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_malloc.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sid-bell <sid-bell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sid-bell <sid-bell@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 09:24:45 by sid-bell          #+#    #+#             */
-/*   Updated: 2019/11/09 22:38:11 by sid-bell         ###   ########.fr       */
+/*   Updated: 2020/08/31 23:57:52 by sid-bell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct	s_mallocparams
 }				t_mallocparams;
 
 void			*ft_malloc(size_t size);
-void			*ft_realoc(void *ptr, size_t size);
+void			*ft_realloc(void *ptr, size_t size);
 void			ft_free(void *ptr);
 void			*ft_doalloc(size_t size);
 t_zone			*ft_newzone(char type, size_t size);
@@ -63,5 +63,6 @@ void			ft_delete_medium_zone(t_zone *zone);
 char			ft_type(size_t size);
 void			*ft_realoc(void *ptr, size_t size);
 void			show_alloc_mem(void);
+void			*ft_memcpy(void *dst, const void *src, size_t n);
 t_mallocparams	g_params;
 #endif
